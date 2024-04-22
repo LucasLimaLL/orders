@@ -1,0 +1,9 @@
+version: '3'
+services:
+  orders:
+    image: openjdk:21
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    ports:
+      - "8080:8080"
