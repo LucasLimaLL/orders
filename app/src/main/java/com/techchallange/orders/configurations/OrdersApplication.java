@@ -1,4 +1,4 @@
-package com.techchallange.orders;
+package com.techchallange.orders.configurations;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
