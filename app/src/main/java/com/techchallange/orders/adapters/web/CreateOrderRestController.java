@@ -1,5 +1,9 @@
 package com.techchallange.orders.adapters.web;
 
+import com.techchallange.orders.adapters.web.dto.RequestOrderDto;
+import com.techchallange.orders.adapters.web.mapper.CreateOrderPortInComboWebMapper;
+import com.techchallange.orders.adapters.web.mapper.CreateOrderPortInUserWebMapper;
+import com.techchallange.orders.adapters.web.mapper.CreateOrderPortInWebMapper;
 import com.techchallange.orders.core.ports.in.CreateOrderPortIn;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
 import java.util.Map;
 
 
@@ -17,13 +22,18 @@ public class CreateOrderRestController {
 
     private final CreateOrderPortIn createOrderPortIn;
 
-    @PostMapping
+    @PostMapping(path = "/api/v1/orders")
     public ResponseEntity<?> create(@RequestHeader Map<String, String> headers,
-                                    @RequestBody String body) {
+                                    @RequestBody RequestOrderDto body) {
+
+        var comboList = CreateOrderPortInComboWebMapper.toDomain(body.getCombos());
+        var user = CreateOrderPortInUserWebMapper.toDomain(body.getRequester());
+
+        var order = createOrderPortIn.create(comboList, user);
 
         return ResponseEntity
                 .created(null)
-                .build();
+                .body(CreateOrderPortInWebMapper.toDto(order));
     }
 
 }

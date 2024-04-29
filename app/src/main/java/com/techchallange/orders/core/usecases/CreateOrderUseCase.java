@@ -3,6 +3,7 @@ package com.techchallange.orders.core.usecases;
 import com.techchallange.orders.core.domains.Combo;
 import com.techchallange.orders.core.domains.Item;
 import com.techchallange.orders.core.domains.Order;
+import com.techchallange.orders.core.domains.Status;
 import com.techchallange.orders.core.domains.User;
 import com.techchallange.orders.core.exceptions.OrderInvalidException;
 import com.techchallange.orders.core.ports.in.CreateOrderPortIn;
@@ -26,9 +27,10 @@ public class CreateOrderUseCase implements CreateOrderPortIn {
 
         var createdOrder = Order
                 .builder()
-                .combos(combos)
-                .requester(user)
-                .amount(calculateFinalPrice(combos))
+                .withCombos(combos)
+                .withRequester(user)
+                .withAmount(calculateFinalPrice(combos))
+                .withStatus(Status.CREATED)
                 .build();
 
         return saveOrderPortOut.save(createdOrder);

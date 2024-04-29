@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.math.BigDecimal;
 
 @Getter
-@Builder
+@Builder(setterPrefix = "with", toBuilder = true)
 public class Item {
 
     private String name;

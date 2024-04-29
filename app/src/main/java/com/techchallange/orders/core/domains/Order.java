@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Getter
-@Builder(toBuilder = true)
+@Builder(setterPrefix = "with", toBuilder = true)
 public class Order {
 
     private String id;

@@ -14,7 +14,7 @@ public class AdvanceOrderStatusUseCase implements AdvanceOrderStatusPortIn {
     public Order advance(Order order) {
         order
                 .toBuilder()
-                .status(order.getStatus().advance())
+                .withStatus(order.getStatus().advance())
                 .build();
 
         return saveOrderPortOut.save(order);

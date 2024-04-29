@@ -4,10 +4,10 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
+@Builder(setterPrefix = "with", toBuilder = true)
 public class User {
 
     private Cpf cpf;
-    private String nome;
+    private String name;
     private Email email;
 }
