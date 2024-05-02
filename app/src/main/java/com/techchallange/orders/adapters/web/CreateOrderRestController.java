@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.Map;
 
 
@@ -31,8 +31,13 @@ public class CreateOrderRestController {
 
         var order = createOrderPortIn.create(comboList, user);
 
+        final var location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(order.getId())
+                .toUri();
+
         return ResponseEntity
-                .created(null)
+                .created(location)
                 .body(CreateOrderPortInWebMapper.toDto(order));
     }
 
