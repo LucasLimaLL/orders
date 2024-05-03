@@ -1,4 +1,4 @@
-package com.techchallange.orders.core.domains;
+package com.techchallange.orders.core.domains.user;
 
 import com.techchallange.orders.core.exceptions.ValidationException;
 import lombok.Getter;

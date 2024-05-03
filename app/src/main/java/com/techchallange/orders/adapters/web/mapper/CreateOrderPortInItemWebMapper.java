@@ -1,10 +1,8 @@
 package com.techchallange.orders.adapters.web.mapper;
 
-import com.techchallange.orders.adapters.web.dto.ComboDto;
 import com.techchallange.orders.adapters.web.dto.ItemDto;
-import com.techchallange.orders.core.domains.Combo;
-import com.techchallange.orders.core.domains.Item;
-import com.techchallange.orders.core.domains.ItemType;
+import com.techchallange.orders.core.domains.order.Item;
+import com.techchallange.orders.core.domains.order.ItemType;
 
 import java.util.List;
 

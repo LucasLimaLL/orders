@@ -1,46 +1,40 @@
 package com.techchallange.orders.core.usecases;
 
-import com.techchallange.orders.core.domains.Combo;
-import com.techchallange.orders.core.domains.Item;
-import com.techchallange.orders.core.domains.Order;
-import com.techchallange.orders.core.domains.Status;
-import com.techchallange.orders.core.domains.User;
-import com.techchallange.orders.core.exceptions.OrderInvalidException;
+import com.techchallange.orders.core.domains.order.Combo;
+import com.techchallange.orders.core.domains.order.Order;
+import com.techchallange.orders.core.domains.order.Status;
+import com.techchallange.orders.core.domains.user.User;
 import com.techchallange.orders.core.ports.in.CreateOrderPortIn;
-import com.techchallange.orders.core.ports.out.SaveOrderPortOut;
+import com.techchallange.orders.core.ports.out.GenerateIdPortOut;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @RequiredArgsConstructor
 public class CreateOrderUseCase implements CreateOrderPortIn {
 
-    final SaveOrderPortOut saveOrderPortOut;
+    private final GenerateIdPortOut generateIdPortOut;
 
     @Override
-    public Order create(List<Combo> combos, User user) {
-
-        if (combos == null || combos.isEmpty()) {
-            throw new OrderInvalidException("No combos found");
-        }
+    public Order create(Combo combo, User user) {
 
         var createdOrder = Order
                 .builder()
-                .withCombos(combos)
+                .withCombo(combo)
                 .withRequester(user)
-                .withAmount(calculateFinalPrice(combos))
+                .withAmount(calculateFinalPrice(combo))
                 .withStatus(Status.CREATED)
                 .build();
 
-        return saveOrderPortOut.save(createdOrder);
+        return createdOrder
+                .toBuilder()
+                .withId(generateIdPortOut.generateId(createdOrder))
+                .build();
     }
 
-    private BigDecimal calculateFinalPrice(List<Combo> combos) {
-
-        return combos.
-                stream()
-                .map(Combo::calculate)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    private BigDecimal calculateFinalPrice(Combo combo) {
+        return combo == null
+                ? BigDecimal.ZERO
+                : combo.calculate();
     }
 }

@@ -2,7 +2,7 @@ package com.techchallange.orders.core.ports.out;
 
 import com.techchallange.orders.core.domains.order.Order;
 
-public interface SaveOrderPortOut {
+public interface GetOrderByIdPortOut {
 
-    Order save(Order order);
+    Order get(String orderId);
 }

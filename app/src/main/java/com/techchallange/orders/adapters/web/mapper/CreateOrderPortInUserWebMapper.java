@@ -1,13 +1,9 @@
 package com.techchallange.orders.adapters.web.mapper;
 
-import com.techchallange.orders.adapters.web.dto.ComboDto;
 import com.techchallange.orders.adapters.web.dto.UserDto;
-import com.techchallange.orders.core.domains.Combo;
-import com.techchallange.orders.core.domains.Cpf;
-import com.techchallange.orders.core.domains.Email;
-import com.techchallange.orders.core.domains.User;
-
-import java.util.List;
+import com.techchallange.orders.core.domains.user.Cpf;
+import com.techchallange.orders.core.domains.user.Email;
+import com.techchallange.orders.core.domains.user.User;
 
 import static java.util.Objects.isNull;
 

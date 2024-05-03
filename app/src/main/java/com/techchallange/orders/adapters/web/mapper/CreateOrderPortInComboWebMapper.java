@@ -1,22 +1,18 @@
 package com.techchallange.orders.adapters.web.mapper;
 
 import com.techchallange.orders.adapters.web.dto.ComboDto;
-import com.techchallange.orders.core.domains.Combo;
+import com.techchallange.orders.core.domains.order.Combo;
 
-import java.util.List;
+import static java.util.Objects.isNull;
 
 public class CreateOrderPortInComboWebMapper {
 
-    public static List<Combo> toDomain(List<ComboDto> combos) {
-        return combos == null || combos.isEmpty()
-                ? List.of()
-                : combos
-                .stream()
-                .map(combo ->
-                        Combo
-                                .builder()
-                                .withItems(CreateOrderPortInItemWebMapper.toDomain(combo.getItems()))
-                                .build())
-                .toList();
+    public static Combo toDomain(ComboDto combo) {
+        return isNull(combo)
+                ? null
+                : Combo
+                .builder()
+                .withItems(CreateOrderPortInItemWebMapper.toDomain(combo.getItems()))
+                .build();
     }
 }

@@ -2,7 +2,7 @@ package com.techchallange.orders.core.ports.in;
 
 import com.techchallange.orders.core.domains.order.Order;
 
-public interface AdvanceOrderStatusPortIn {
+public interface PayOrderPortIn {
 
-    Order advance(Order order);
+    Order pay(Order order);
 }

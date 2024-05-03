@@ -26,10 +26,10 @@ public class CreateOrderRestController {
     public ResponseEntity<?> create(@RequestHeader Map<String, String> headers,
                                     @RequestBody RequestOrderDto body) {
 
-        var comboList = CreateOrderPortInComboWebMapper.toDomain(body.getCombos());
+        var combo = CreateOrderPortInComboWebMapper.toDomain(body.getCombo());
         var user = CreateOrderPortInUserWebMapper.toDomain(body.getRequester());
 
-        var order = createOrderPortIn.create(comboList, user);
+        var order = createOrderPortIn.create(combo, user);
 
         final var location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")

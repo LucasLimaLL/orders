@@ -15,6 +15,6 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RequestOrderDto {
 
-    private List<ComboDto> combos;
+    private ComboDto combo;
     private UserDto requester;
 }
