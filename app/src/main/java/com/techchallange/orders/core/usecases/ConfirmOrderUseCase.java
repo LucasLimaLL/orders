@@ -2,6 +2,7 @@ package com.techchallange.orders.core.usecases;
 
 import com.techchallange.orders.core.domains.order.Order;
 import com.techchallange.orders.core.domains.payment.PaymentType;
+import com.techchallange.orders.core.exceptions.PaymentMethodNotValidatedException;
 import com.techchallange.orders.core.ports.in.ConfirmOrderPortIn;
 import com.techchallange.orders.core.ports.out.PaymentGatewayPortOut;
 import com.techchallange.orders.core.ports.out.SaveOrderPortOut;
@@ -22,11 +23,15 @@ public class ConfirmOrderUseCase implements ConfirmOrderPortIn {
         var gatewaySelected = paymentGatewaysPortOut
                 .stream()
                 .filter(gateway -> gateway.selected(paymentType))
-                .findFirst().get();
+                .findFirst();
+
+        if (gatewaySelected.isEmpty()) {
+            throw new PaymentMethodNotValidatedException(paymentType);
+        }
 
         return saveOrderPortOut.save(order
                 .toBuilder()
-                .withPayment(gatewaySelected.collectPaymentDetails())
+                .withPayment(gatewaySelected.get().collectPaymentDetails())
                 .build());
     }
 }
