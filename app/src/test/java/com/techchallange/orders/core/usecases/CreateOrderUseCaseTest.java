@@ -39,17 +39,16 @@ class CreateOrderUseCaseTest {
 
         final var key = UUID.randomUUID().toString();
         final var user = UserSupport.getUser();
-        final var combos = List.of(ComboSupport.getCombo());
+        final var combo = ComboSupport.getCombo();
 
         when(generateIdPortOut.generateId(Mockito.any())).thenReturn(key);
 
-        final var order = this.createOrderUseCase.create(combos, user);
+        final var order = this.createOrderUseCase.create(combo, user);
 
         assertAll(
                 () -> assertThat(order).isNotNull(),
                 () -> assertThat(order.getId()).isEqualTo(key),
-                () -> assertThat(order.getCombos()).isNotEmpty(),
-                () -> assertThat(order.getCombos().size()).isEqualTo(combos.size()),
+                () -> assertThat(order.getCombo()).isNotNull(),
                 () -> assertThat(order.getAmount()).isEqualTo(new BigDecimal("21.60")),
                 () -> assertThat(order.getRequester()).isNotNull(),
                 () -> assertThat(order.getRequester().getName()).isEqualTo(user.getName()),
@@ -63,17 +62,16 @@ class CreateOrderUseCaseTest {
     void testScenarioWithListOfComboFilled() {
 
         final var key = UUID.randomUUID().toString();
-        final var combos = List.of(ComboSupport.getCombo());
+        final var combo = ComboSupport.getCombo();
 
         when(generateIdPortOut.generateId(Mockito.any())).thenReturn(key);
 
-        final var order = this.createOrderUseCase.create(combos, null);
+        final var order = this.createOrderUseCase.create(combo, null);
 
         assertAll(
                 () -> assertThat(order).isNotNull(),
                 () -> assertThat(order.getId()).isEqualTo(key),
-                () -> assertThat(order.getCombos()).isNotEmpty(),
-                () -> assertThat(order.getCombos().size()).isEqualTo(combos.size()),
+                () -> assertThat(order.getCombo()).isNotNull(),
                 () -> assertThat(order.getAmount()).isEqualTo(new BigDecimal("21.60")),
                 () -> assertThat(order.getRequester()).isNull()
         );
@@ -93,7 +91,7 @@ class CreateOrderUseCaseTest {
         assertAll(
                 () -> assertThat(order).isNotNull(),
                 () -> assertThat(order.getId()).isEqualTo(key),
-                () -> assertThat(order.getCombos()).isNull(),
+                () -> assertThat(order.getCombo()).isNull(),
                 () -> assertThat(order.getRequester()).isNotNull(),
                 () -> assertThat(order.getRequester().getName()).isEqualTo(user.getName()),
                 () -> assertThat(order.getRequester().getCpf().getNumber()).isEqualTo(user.getCpf().getNumber()),
@@ -114,7 +112,7 @@ class CreateOrderUseCaseTest {
         assertAll(
                 () -> assertThat(order).isNotNull(),
                 () -> assertThat(order.getId()).isEqualTo(key),
-                () -> assertThat(order.getCombos()).isNull(),
+                () -> assertThat(order.getCombo()).isNull(),
                 () -> assertThat(order.getRequester()).isNull()
         );
     }
