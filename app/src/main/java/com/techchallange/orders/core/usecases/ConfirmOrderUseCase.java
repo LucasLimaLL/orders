@@ -6,16 +6,19 @@ import com.techchallange.orders.core.exceptions.PaymentMethodNotValidatedExcepti
 import com.techchallange.orders.core.ports.in.ConfirmOrderPortIn;
 import com.techchallange.orders.core.ports.out.PaymentGatewayPortOut;
 import com.techchallange.orders.core.ports.out.SaveOrderPortOut;
-import lombok.AllArgsConstructor;
 
 import java.util.List;
 
-@AllArgsConstructor
 public class ConfirmOrderUseCase implements ConfirmOrderPortIn {
 
-    private SaveOrderPortOut saveOrderPortOut;
+    private final SaveOrderPortOut saveOrderPortOut;
 
-    private List<PaymentGatewayPortOut> paymentGatewaysPortOut;
+    private final List<PaymentGatewayPortOut> paymentGatewaysPortOut;
+
+    public ConfirmOrderUseCase(SaveOrderPortOut saveOrderPortOut, List<PaymentGatewayPortOut> paymentGatewaysPortOut) {
+        this.saveOrderPortOut = saveOrderPortOut;
+        this.paymentGatewaysPortOut = paymentGatewaysPortOut;
+    }
 
     @Override
     public Order confirm(Order order, PaymentType paymentType) {

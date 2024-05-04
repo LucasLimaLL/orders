@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Builder(setterPrefix = "with", toBuilder = true)
 public class Item {
 
+    private Long id;
     private String name;
     private ItemType type;
     private BigDecimal price;

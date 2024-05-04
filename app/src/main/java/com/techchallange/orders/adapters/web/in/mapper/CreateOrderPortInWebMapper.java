@@ -1,4 +1,4 @@
-package com.techchallange.orders.adapters.web.mapper;
+package com.techchallange.orders.adapters.web.in.mapper;
 
 import com.techchallange.orders.core.domains.order.Order;
 

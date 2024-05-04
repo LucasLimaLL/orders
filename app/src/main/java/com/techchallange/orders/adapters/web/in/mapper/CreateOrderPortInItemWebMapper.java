@@ -1,6 +1,6 @@
-package com.techchallange.orders.adapters.web.mapper;
+package com.techchallange.orders.adapters.web.in.mapper;
 
-import com.techchallange.orders.adapters.web.dto.ItemDto;
+import com.techchallange.orders.adapters.web.in.dto.ItemDto;
 import com.techchallange.orders.core.domains.order.Item;
 import com.techchallange.orders.core.domains.order.ItemType;
 

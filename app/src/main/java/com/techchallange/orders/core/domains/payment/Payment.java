@@ -1,5 +1,7 @@
 package com.techchallange.orders.core.domains.payment;
 
+import lombok.Getter;
+
 public abstract class Payment {
 
     private final PaymentType paymentType;
@@ -8,5 +10,7 @@ public abstract class Payment {
         this.paymentType = paymentType;
     }
 
-    public abstract void additionalInfo(Object... objects);
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
 }

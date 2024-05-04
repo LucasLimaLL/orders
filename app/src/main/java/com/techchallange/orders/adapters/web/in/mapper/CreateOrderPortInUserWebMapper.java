@@ -1,6 +1,6 @@
-package com.techchallange.orders.adapters.web.mapper;
+package com.techchallange.orders.adapters.web.in.mapper;
 
-import com.techchallange.orders.adapters.web.dto.UserDto;
+import com.techchallange.orders.adapters.web.in.dto.UserDto;
 import com.techchallange.orders.core.domains.user.Cpf;
 import com.techchallange.orders.core.domains.user.Email;
 import com.techchallange.orders.core.domains.user.User;

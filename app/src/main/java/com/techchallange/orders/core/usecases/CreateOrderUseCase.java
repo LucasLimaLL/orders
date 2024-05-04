@@ -9,11 +9,15 @@ import com.techchallange.orders.core.ports.out.GenerateIdPortOut;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-@RequiredArgsConstructor
 public class CreateOrderUseCase implements CreateOrderPortIn {
 
     private final GenerateIdPortOut generateIdPortOut;
+
+    public CreateOrderUseCase(GenerateIdPortOut generateIdPortOut) {
+        this.generateIdPortOut = generateIdPortOut;
+    }
 
     @Override
     public Order create(Combo combo, User user) {
@@ -23,6 +27,7 @@ public class CreateOrderUseCase implements CreateOrderPortIn {
                 .withCombo(combo)
                 .withRequester(user)
                 .withAmount(calculateFinalPrice(combo))
+                .withRequestedAt(LocalDateTime.now())
                 .withStatus(Status.CREATED)
                 .build();
 

@@ -1,9 +1,9 @@
-package com.techchallange.orders.adapters.web;
+package com.techchallange.orders.adapters.web.in;
 
-import com.techchallange.orders.adapters.web.dto.RequestOrderDto;
-import com.techchallange.orders.adapters.web.mapper.CreateOrderPortInComboWebMapper;
-import com.techchallange.orders.adapters.web.mapper.CreateOrderPortInUserWebMapper;
-import com.techchallange.orders.adapters.web.mapper.CreateOrderPortInWebMapper;
+import com.techchallange.orders.adapters.web.in.dto.RequestOrderDto;
+import com.techchallange.orders.adapters.web.in.mapper.CreateOrderPortInComboWebMapper;
+import com.techchallange.orders.adapters.web.in.mapper.CreateOrderPortInUserWebMapper;
+import com.techchallange.orders.adapters.web.in.mapper.CreateOrderPortInWebMapper;
 import com.techchallange.orders.core.ports.in.CreateOrderPortIn;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

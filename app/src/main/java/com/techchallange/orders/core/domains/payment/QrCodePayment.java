@@ -1,13 +1,22 @@
 package com.techchallange.orders.core.domains.payment;
 
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
 public class QrCodePayment extends Payment {
 
-    public QrCodePayment() {
+    private final String userId;
+    private final String externalId;
+    private final String sponsorId;
+
+    public QrCodePayment(String userId,
+                         String externalId,
+                         String sponsorId) {
         super(PaymentType.QR_CODE);
+        this.userId = userId;
+        this.externalId = externalId;
+        this.sponsorId = sponsorId;
     }
 
-    @Override
-    public void additionalInfo(Object... objects) {
-
-    }
 }

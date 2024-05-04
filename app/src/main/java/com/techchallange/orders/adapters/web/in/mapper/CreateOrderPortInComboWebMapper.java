@@ -1,6 +1,6 @@
-package com.techchallange.orders.adapters.web.mapper;
+package com.techchallange.orders.adapters.web.in.mapper;
 
-import com.techchallange.orders.adapters.web.dto.ComboDto;
+import com.techchallange.orders.adapters.web.in.dto.ComboDto;
 import com.techchallange.orders.core.domains.order.Combo;
 
 import static java.util.Objects.isNull;

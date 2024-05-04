@@ -1,4 +1,4 @@
-package com.techchallange.orders.adapters.web;
+package com.techchallange.orders.adapters.web.in;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

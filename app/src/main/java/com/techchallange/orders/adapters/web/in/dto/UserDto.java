@@ -1,4 +1,4 @@
-package com.techchallange.orders.adapters.web.dto;
+package com.techchallange.orders.adapters.web.in.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

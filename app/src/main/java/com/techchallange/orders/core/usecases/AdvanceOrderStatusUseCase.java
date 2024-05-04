@@ -5,10 +5,13 @@ import com.techchallange.orders.core.ports.in.AdvanceOrderStatusPortIn;
 import com.techchallange.orders.core.ports.out.SaveOrderPortOut;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 public class AdvanceOrderStatusUseCase implements AdvanceOrderStatusPortIn {
 
-    final SaveOrderPortOut saveOrderPortOut;
+    private final SaveOrderPortOut saveOrderPortOut;
+
+    public AdvanceOrderStatusUseCase(SaveOrderPortOut saveOrderPortOut) {
+        this.saveOrderPortOut = saveOrderPortOut;
+    }
 
     @Override
     public Order advance(Order order) {

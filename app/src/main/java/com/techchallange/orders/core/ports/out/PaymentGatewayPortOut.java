@@ -7,7 +7,8 @@ import java.math.BigDecimal;
 
 public interface PaymentGatewayPortOut {
 
-    boolean pay(BigDecimal amount);
+    boolean pay(Payment payment, BigDecimal amount);
+
 
     boolean selected(PaymentType paymentType);
 
