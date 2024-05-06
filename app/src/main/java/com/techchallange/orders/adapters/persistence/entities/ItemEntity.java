@@ -1,6 +1,5 @@
 package com.techchallange.orders.adapters.persistence.entities;
 
-import com.techchallange.orders.core.domains.order.ItemType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
