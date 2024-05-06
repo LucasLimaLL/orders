@@ -16,6 +16,7 @@ public class CreateOrderPortInItemWebMapper {
                 .map(item ->
                         Item
                                 .builder()
+                                .withId(item.getId())
                                 .withName(item.getName())
                                 .withType(ItemType.valueOf(item.getType()))
                                 .withPrice(item.getPrice())

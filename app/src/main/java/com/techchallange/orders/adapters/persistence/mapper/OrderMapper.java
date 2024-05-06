@@ -13,6 +13,7 @@ public class OrderMapper {
                 .withStatus(createdOrder.getStatus().name())
                 .withAmount(createdOrder.getAmount())
                 .withRequestedAt(createdOrder.getRequestedAt())
+                .withRequester(ClientMapper.toEntity(createdOrder.getRequester()))
                 .build();
 
     }
@@ -24,6 +25,7 @@ public class OrderMapper {
                 .withStatus(Status.valueOf(orderEntity.getStatus()))
                 .withAmount(orderEntity.getAmount())
                 .withRequestedAt(orderEntity.getRequestedAt())
+                .withRequester(ClientMapper.toDomain(orderEntity.getRequester()))
                 .build();
     }
 }
