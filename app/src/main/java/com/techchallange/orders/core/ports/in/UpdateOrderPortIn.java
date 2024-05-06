@@ -7,5 +7,4 @@ public interface UpdateOrderPortIn {
 
     Order update(Order order, Combo combo);
 
-    Order update(String orderId, Combo combo);
 }

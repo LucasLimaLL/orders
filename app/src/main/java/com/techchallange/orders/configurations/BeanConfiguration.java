@@ -7,6 +7,7 @@ import com.techchallange.orders.core.ports.out.SaveOrderPortOut;
 import com.techchallange.orders.core.usecases.AdvanceOrderStatusUseCase;
 import com.techchallange.orders.core.usecases.ConfirmOrderUseCase;
 import com.techchallange.orders.core.usecases.CreateOrderUseCase;
+import com.techchallange.orders.core.usecases.GetOrderUseCase;
 import com.techchallange.orders.core.usecases.PayOrderUseCase;
 import com.techchallange.orders.core.usecases.UpdateOrderUseCase;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,12 @@ public class BeanConfiguration {
     CreateOrderUseCase beanCreateOrderUseCase(GenerateIdPortOut generateIdPortOut) {
         return new CreateOrderUseCase(generateIdPortOut);
     }
+
+    @Bean
+    GetOrderUseCase beanGetOrderUseCase(GetOrderByIdPortOut getOrderByIdPortOut) {
+        return new GetOrderUseCase(getOrderByIdPortOut);
+    }
+
 
     @Bean
     AdvanceOrderStatusUseCase beanAdvanceOrderStatusUseCase(SaveOrderPortOut saveOrderPortOut) {
@@ -38,8 +45,8 @@ public class BeanConfiguration {
     }
 
     @Bean
-    UpdateOrderUseCase beanUpdateOrderUseCase(GetOrderByIdPortOut getOrderByIdPortOut, SaveOrderPortOut saveOrderPortOut) {
-        return new UpdateOrderUseCase(getOrderByIdPortOut, saveOrderPortOut);
+    UpdateOrderUseCase beanUpdateOrderUseCase(SaveOrderPortOut saveOrderPortOut) {
+        return new UpdateOrderUseCase(saveOrderPortOut);
     }
 
 

@@ -5,6 +5,18 @@ public enum Status {
     CREATED {
         @Override
         public Status advance() {
+            return AWAITING_PAYMENT;
+        }
+    },
+    AWAITING_PAYMENT {
+        @Override
+        public Status advance() {
+            return PAID;
+        }
+    },
+    PAID {
+        @Override
+        public Status advance() {
             return RECEIVED;
         }
     },

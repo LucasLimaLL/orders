@@ -26,7 +26,9 @@ public class CreateOrderUseCase implements CreateOrderPortIn {
                 .builder()
                 .withCombo(combo)
                 .withRequester(user)
-                .withAmount(calculateFinalPrice(combo))
+                .withAmount(combo == null
+                        ? BigDecimal.ZERO
+                        : combo.calculate())
                 .withRequestedAt(LocalDateTime.now())
                 .withStatus(Status.CREATED)
                 .build();
@@ -35,11 +37,5 @@ public class CreateOrderUseCase implements CreateOrderPortIn {
                 .toBuilder()
                 .withId(generateIdPortOut.generateId(createdOrder))
                 .build();
-    }
-
-    private BigDecimal calculateFinalPrice(Combo combo) {
-        return combo == null
-                ? BigDecimal.ZERO
-                : combo.calculate();
     }
 }

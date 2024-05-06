@@ -28,6 +28,8 @@ public class ConfirmOrderUseCase implements ConfirmOrderPortIn {
                 .filter(gateway -> gateway.selected(paymentType))
                 .findFirst();
 
+        var status = order.getStatus();
+
         if (gatewaySelected.isEmpty()) {
             throw new PaymentMethodNotValidatedException(paymentType);
         }
@@ -35,6 +37,7 @@ public class ConfirmOrderUseCase implements ConfirmOrderPortIn {
         return saveOrderPortOut.save(order
                 .toBuilder()
                 .withPayment(gatewaySelected.get().collectPaymentDetails())
+                .withStatus(status.advance())
                 .build());
     }
 }

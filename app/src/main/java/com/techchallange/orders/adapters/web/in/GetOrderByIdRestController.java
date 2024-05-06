@@ -1,8 +1,10 @@
 package com.techchallange.orders.adapters.web.in;
 
+import com.techchallange.orders.core.ports.in.GetOrderPortIn;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +15,17 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class GetOrderByIdRestController {
 
+    private final GetOrderPortIn getOrderPortIn;
+
     @GetMapping(path = "/api/v1/orders/{id}")
     public ResponseEntity<?> get(@RequestHeader Map<String, String> headers,
-                                 @RequestParam("id") String id) {
+                                 @PathVariable("id") String id) {
 
-        return ResponseEntity.notFound().build();
+        var order = getOrderPortIn.get(id);
+
+        return order.isEmpty()
+                ? ResponseEntity.notFound().build()
+                : ResponseEntity.ok(order);
     }
 
 }

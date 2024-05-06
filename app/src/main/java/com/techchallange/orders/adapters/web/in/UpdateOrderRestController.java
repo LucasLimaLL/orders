@@ -5,6 +5,7 @@ import com.techchallange.orders.adapters.web.in.mapper.CreateOrderPortInComboWeb
 import com.techchallange.orders.adapters.web.in.mapper.CreateOrderPortInUserWebMapper;
 import com.techchallange.orders.adapters.web.in.mapper.CreateOrderPortInWebMapper;
 import com.techchallange.orders.core.ports.in.CreateOrderPortIn;
+import com.techchallange.orders.core.ports.in.GetOrderPortIn;
 import com.techchallange.orders.core.ports.in.UpdateOrderPortIn;
 import com.techchallange.orders.core.usecases.UpdateOrderUseCase;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UpdateOrderRestController {
 
+    private final GetOrderPortIn getOrderPortIn;
     private final UpdateOrderPortIn updateOrderPortIn;
 
     @PatchMapping(path = "/api/v1/orders/{id}")
@@ -34,10 +36,17 @@ public class UpdateOrderRestController {
 
         var combo = CreateOrderPortInComboWebMapper.toDomain(body.getCombo());
 
-        var order = updateOrderPortIn.update(id, combo);
+        var order = getOrderPortIn.get(id);
+
+        if (order.isEmpty()) {
+            return ResponseEntity
+                    .notFound()
+                    .build();
+        }
+        var orderUpdated = updateOrderPortIn.update(order.get(), combo);
 
         return ResponseEntity
-                .ok(CreateOrderPortInWebMapper.toDto(order));
+                .ok(CreateOrderPortInWebMapper.toDto(orderUpdated));
     }
 
 }

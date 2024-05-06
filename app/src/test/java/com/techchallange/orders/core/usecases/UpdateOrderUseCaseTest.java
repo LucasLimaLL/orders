@@ -9,10 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class UpdateOrderUseCaseTest {
-
-    @Mock
-    private GetOrderByIdPortOut getOrderByIdPortOut;
-
+    
     @Mock
     private SaveOrderPortOut saveOrderPortOut;
 
@@ -20,7 +17,7 @@ class UpdateOrderUseCaseTest {
 
     @BeforeEach
     void setUp() {
-        this.updateOrderUseCase = new UpdateOrderUseCase(getOrderByIdPortOut, saveOrderPortOut);
+        this.updateOrderUseCase = new UpdateOrderUseCase(saveOrderPortOut);
     }
 
 
