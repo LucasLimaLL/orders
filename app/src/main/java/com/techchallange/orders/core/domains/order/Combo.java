@@ -1,7 +1,7 @@
-package com.techchallange.orders.core.domains;
+package com.techchallange.orders.core.domains.order;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@RequiredArgsConstructor
+@Builder(setterPrefix = "with", toBuilder = true)
 public class Combo {
 
     private List<Item> items;

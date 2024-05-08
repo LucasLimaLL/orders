@@ -2,7 +2,9 @@ package com.techchallange.orders.core.ports.in;
 
 import com.techchallange.orders.core.domains.order.Order;
 
-public interface AdvanceOrderStatusPortIn {
+import java.util.Optional;
 
-    Order advance(Order order);
+public interface GetOrderPortIn {
+
+    Optional<Order> get(String orderId);
 }

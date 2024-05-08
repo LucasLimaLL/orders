@@ -1,4 +1,4 @@
-package com.techchallange.orders.core.domains;
+package com.techchallange.orders.core.domains.user;
 
 import com.techchallange.orders.core.exceptions.ValidationException;
 import lombok.Getter;
@@ -16,6 +16,11 @@ public class Cpf {
     }
 
     private boolean validate(String cpf) {
+
+        if (cpf == null || cpf.length() < 11) {
+            return false;
+        }
+
         cpf = cpf.replaceAll("[^0-9]", "");
 
         if (cpf.length() != 11) {
