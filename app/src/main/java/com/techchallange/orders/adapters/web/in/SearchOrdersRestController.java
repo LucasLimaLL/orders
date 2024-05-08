@@ -27,7 +27,7 @@ public class SearchOrdersRestController {
         );
 
         return order.isEmpty()
-                ? ResponseEntity.notFound().build()
+                ? ResponseEntity.noContent().build()
                 : ResponseEntity.ok(order);
     }
 
