@@ -32,8 +32,8 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = {CascadeType.ALL })
-    @JoinColumn(name = "requester_document", referencedColumnName = "cpf", unique = true)
+    @ManyToOne
+    @JoinColumn(name = "requester_document", referencedColumnName = "cpf")
     private UserEntity requester;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)

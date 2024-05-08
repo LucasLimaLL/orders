@@ -42,8 +42,8 @@ public class BeanConfiguration {
     }
 
     @Bean
-    ConfirmOrderUseCase beanConfirmOrderUseCase(SaveOrderPortOut saveOrderPortOut, List<PaymentGatewayPortOut> paymentGatewaysPortOut) {
-        return new ConfirmOrderUseCase(saveOrderPortOut, paymentGatewaysPortOut);
+    ConfirmOrderUseCase beanConfirmOrderUseCase(SaveOrderPortOut saveOrderPortOut) {
+        return new ConfirmOrderUseCase(saveOrderPortOut);
     }
 
     @Bean

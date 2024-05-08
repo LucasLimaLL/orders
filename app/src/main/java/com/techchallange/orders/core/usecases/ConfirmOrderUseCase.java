@@ -1,43 +1,36 @@
 package com.techchallange.orders.core.usecases;
 
 import com.techchallange.orders.core.domains.order.Order;
+import com.techchallange.orders.core.domains.order.Status;
+import com.techchallange.orders.core.domains.payment.Payment;
 import com.techchallange.orders.core.domains.payment.PaymentType;
-import com.techchallange.orders.core.exceptions.PaymentMethodNotValidatedException;
+import com.techchallange.orders.core.domains.payment.QrCodePayment;
 import com.techchallange.orders.core.ports.in.ConfirmOrderPortIn;
-import com.techchallange.orders.core.ports.out.PaymentGatewayPortOut;
 import com.techchallange.orders.core.ports.out.SaveOrderPortOut;
-
-import java.util.List;
 
 public class ConfirmOrderUseCase implements ConfirmOrderPortIn {
 
     private final SaveOrderPortOut saveOrderPortOut;
 
-    private final List<PaymentGatewayPortOut> paymentGatewaysPortOut;
 
-    public ConfirmOrderUseCase(SaveOrderPortOut saveOrderPortOut, List<PaymentGatewayPortOut> paymentGatewaysPortOut) {
+    public ConfirmOrderUseCase(SaveOrderPortOut saveOrderPortOut) {
         this.saveOrderPortOut = saveOrderPortOut;
-        this.paymentGatewaysPortOut = paymentGatewaysPortOut;
     }
 
     @Override
     public Order confirm(Order order, PaymentType paymentType) {
 
-        var gatewaySelected = paymentGatewaysPortOut
-                .stream()
-                .filter(gateway -> gateway.selected(paymentType))
-                .findFirst();
-
-        var status = order.getStatus();
-
-        if (gatewaySelected.isEmpty()) {
-            throw new PaymentMethodNotValidatedException(paymentType);
+        Payment payment = null;
+        if (paymentType == PaymentType.QR_CODE) {
+            payment = QrCodePayment
+                    .builder()
+                    .build();
         }
 
         return saveOrderPortOut.save(order
                 .toBuilder()
-                .withPayment(gatewaySelected.get().collectPaymentDetails())
-                .withStatus(status.advance())
+                .withStatus(Status.AWAITING_PAYMENT)
+                .withPayment(payment)
                 .build());
     }
 }

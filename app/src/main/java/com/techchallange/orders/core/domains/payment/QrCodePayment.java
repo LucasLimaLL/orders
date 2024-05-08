@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder(setterPrefix = "with")
 public class QrCodePayment extends Payment {
 
     private final String userId;
