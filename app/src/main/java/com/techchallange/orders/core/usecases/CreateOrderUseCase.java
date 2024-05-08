@@ -6,10 +6,9 @@ import com.techchallange.orders.core.domains.order.Status;
 import com.techchallange.orders.core.domains.user.User;
 import com.techchallange.orders.core.ports.in.CreateOrderPortIn;
 import com.techchallange.orders.core.ports.out.GenerateIdPortOut;
-import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public class CreateOrderUseCase implements CreateOrderPortIn {
 
@@ -29,7 +28,7 @@ public class CreateOrderUseCase implements CreateOrderPortIn {
                 .withAmount(combo == null
                         ? BigDecimal.ZERO
                         : combo.calculate())
-                .withRequestedAt(LocalDateTime.now())
+                .withRequestedAt(ZonedDateTime.now())
                 .withStatus(Status.CREATED)
                 .build();
 

@@ -6,16 +6,16 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Getter
 @Builder(setterPrefix = "with", toBuilder = true)
 public class Order {
 
-    private String id;
+    private Long id;
     private User requester;
     private Combo combo;
-    private LocalDateTime requestedAt;
+    private ZonedDateTime requestedAt;
     private BigDecimal amount;
     private Status status;
     private Payment payment;

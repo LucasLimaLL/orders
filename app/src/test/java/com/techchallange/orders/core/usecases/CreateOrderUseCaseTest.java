@@ -12,8 +12,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -22,6 +21,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class CreateOrderUseCaseTest {
 
+    private static final Random RANDOM = new Random();
     @Mock
     private GenerateIdPortOut generateIdPortOut;
 
@@ -37,7 +37,7 @@ class CreateOrderUseCaseTest {
     @DisplayName("Scenario with List of combo and user filled")
     void testScenarioWithListOfComboAndUserFilled() {
 
-        final var key = UUID.randomUUID().toString();
+        final var key = RANDOM.nextLong();
         final var user = UserSupport.getUser();
         final var combo = ComboSupport.getCombo();
 
@@ -61,7 +61,7 @@ class CreateOrderUseCaseTest {
     @DisplayName("Scenario with list of combo filled")
     void testScenarioWithListOfComboFilled() {
 
-        final var key = UUID.randomUUID().toString();
+        final var key = RANDOM.nextLong();
         final var combo = ComboSupport.getCombo();
 
         when(generateIdPortOut.generateId(Mockito.any())).thenReturn(key);
@@ -81,7 +81,7 @@ class CreateOrderUseCaseTest {
     @DisplayName("Scenario with user filled")
     void testScenarioWithUserFilled() {
 
-        final var key = UUID.randomUUID().toString();
+        final var key = RANDOM.nextLong();
         final var user = UserSupport.getUser();
 
         when(generateIdPortOut.generateId(Mockito.any())).thenReturn(key);
@@ -103,7 +103,7 @@ class CreateOrderUseCaseTest {
     @DisplayName("Scenario with nothing filled")
     void testScenarioWithNothingFilled() {
 
-        final var key = UUID.randomUUID().toString();
+        final var key = RANDOM.nextLong();
 
         when(generateIdPortOut.generateId(Mockito.any())).thenReturn(key);
 

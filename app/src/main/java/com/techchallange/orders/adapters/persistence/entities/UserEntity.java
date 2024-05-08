@@ -12,12 +12,13 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "clients")
+@Table(name = "users")
 @Builder(setterPrefix = "with")
 public class UserEntity {
 
     @Id
     private String cpf;
+
     private String name;
     private String email;
 }

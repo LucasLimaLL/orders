@@ -1,15 +1,15 @@
-package com.techchallange.orders.adapters.persistence.mapper;
+package com.techchallange.orders.adapters.persistence.mappers;
 
 import com.techchallange.orders.adapters.persistence.entities.UserEntity;
 import com.techchallange.orders.core.domains.user.Cpf;
 import com.techchallange.orders.core.domains.user.Email;
 import com.techchallange.orders.core.domains.user.User;
 
-import static java.util.Objects.isNull;
+import java.util.Objects;
 
-public class ClientMapper {
+public class UserMapper {
     public static UserEntity toEntity(User requester) {
-        return isNull(requester)
+        return Objects.isNull(requester)
                 ? null
                 : UserEntity
                 .builder()
@@ -20,7 +20,7 @@ public class ClientMapper {
     }
 
     public static User toDomain(UserEntity requester) {
-        return isNull(requester)
+        return Objects.isNull(requester)
                 ? null
                 : User
                 .builder()
